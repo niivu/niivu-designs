@@ -18,12 +18,3 @@
 * **Community Discussions:** Powered by [Giscus](https://giscus.app) and GitHub Discussions—sign in with GitHub on any theme card to leave feedback.
 
 ---
-
-## Repository Structure
-
-```text
-niivu-designs/
-├── index.html          # Standalone portfolio & Giscus integration
-├── README.md           # Repository overview
-└── images/             # Theme screenshots & avatar
-```
