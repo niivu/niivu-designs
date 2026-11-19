@@ -82,60 +82,17 @@
       gap: 28px;
     }
 
-    nav a, .config-trigger {
+    nav a {
       color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
       letter-spacing: 0.02em;
       transition: color 0.2s ease;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
     }
 
-    nav a:hover, .config-trigger:hover {
+    nav a:hover {
       color: var(--text-primary);
-    }
-
-    /* Setup Banner */
-    .setup-banner {
-      margin-top: 24px;
-      background: #12100d;
-      border: 1px solid #382e1e;
-      border-radius: 14px;
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 0.85rem;
-      color: #d6c3a5;
-    }
-
-    .setup-banner.hidden {
-      display: none;
-    }
-
-    .setup-banner code {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
-    }
-
-    .setup-btn {
-      background: #d6c3a5;
-      color: #080808;
-      border: none;
-      padding: 7px 14px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
     }
 
     /* Hero Section */
@@ -303,7 +260,6 @@
     .featured-media img {
       width: 100%;
       height: auto;
-      max-height: none;
       object-fit: contain;
       display: block;
     }
@@ -366,11 +322,11 @@
     }
 
     .btn-primary {
-      padding: 11px 20px;
-      border-radius: 999px;
       background: var(--text-primary);
       color: var(--bg);
       border: none;
+      padding: 11px 22px;
+      border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
@@ -383,11 +339,11 @@
     }
 
     .btn-secondary {
-      padding: 11px 20px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
+      background: transparent;
       color: var(--text-primary);
       border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 500;
       cursor: pointer;
@@ -396,7 +352,7 @@
 
     .btn-secondary:hover {
       border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
     }
 
     /* Archive Grid — Uncropped Images */
@@ -411,7 +367,7 @@
     .archive-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 22px;
       overflow: hidden;
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
@@ -426,6 +382,7 @@
       background: #050505;
       cursor: pointer;
       border-bottom: 1px solid var(--border);
+      position: relative;
     }
 
     .archive-media img {
@@ -439,33 +396,34 @@
       padding: 24px 28px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 16px;
     }
 
-    .archive-top {
+    .archive-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 12px;
     }
 
-    .archive-card .card-title {
+    .archive-title {
       font-size: 1.4rem;
-      margin-bottom: 4px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
     }
 
-    .archive-bottom {
+    .archive-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       padding-top: 14px;
       border-top: 1px solid var(--border);
     }
 
-    .img-fallback {
-      padding: 64px 24px;
+    .missing-img-fallback {
+      padding: 48px 24px;
       text-align: center;
       color: var(--text-secondary);
       font-family: 'Space Mono', monospace;
@@ -492,14 +450,6 @@
       gap: 12px;
     }
 
-    .footer-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
-      object-fit: cover;
-      border: 1px solid var(--border);
-    }
-
     .footer-links {
       display: flex;
       gap: 24px;
@@ -514,11 +464,11 @@
       color: var(--text-primary);
     }
 
-    /* Inspector Modal + Giscus Comments */
+    /* Inspector Modal with Giscus Comments */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(4, 4, 4, 0.92);
+      background: rgba(5, 5, 5, 0.94);
       backdrop-filter: blur(12px);
       display: none;
       justify-content: center;
@@ -533,35 +483,37 @@
 
     .modal-shell {
       background: var(--surface);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-hover);
       border-radius: 24px;
       width: 100%;
-      max-width: 1320px;
+      max-width: 1360px;
       max-height: 92vh;
       display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(340px, 1fr);
+      grid-template-columns: 1.45fr 1fr;
       overflow: hidden;
       box-shadow: 0 32px 96px rgba(0, 0, 0, 0.85);
     }
 
-    .modal-image-pane {
+    .modal-preview {
       background: #050505;
-      overflow-y: auto;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: auto;
       padding: 24px;
       border-right: 1px solid var(--border);
     }
 
-    .modal-image-pane img {
-      width: 100%;
+    .modal-preview img {
+      max-width: 100%;
+      max-height: 84vh;
+      width: auto;
       height: auto;
       object-fit: contain;
       border-radius: 10px;
     }
 
-    .modal-side-pane {
+    .modal-sidebar {
       display: flex;
       flex-direction: column;
       max-height: 92vh;
@@ -570,109 +522,72 @@
       gap: 20px;
     }
 
-    .modal-header {
+    .modal-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
+      gap: 16px;
       padding-bottom: 18px;
       border-bottom: 1px solid var(--border);
     }
 
     .modal-title {
-      font-size: 1.5rem;
+      font-size: 1.65rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
     }
 
     .close-btn {
       background: var(--surface-elevated);
       border: 1px solid var(--border);
       color: var(--text-primary);
-      padding: 7px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
       cursor: pointer;
       font-size: 0.8rem;
+      font-family: 'Space Mono', monospace;
     }
 
-    .modal-stats-row {
+    .close-btn:hover {
+      border-color: var(--border-hover);
+    }
+
+    .modal-actions {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .giscus-section-title {
+    .giscus-section-label {
       font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-secondary);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
-    .giscus-wrapper {
+    #giscusContainer {
       min-height: 220px;
     }
 
-    /* Setup Modal */
-    .config-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      width: 100%;
-      max-width: 520px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .config-card h3 {
-      font-size: 1.25rem;
-    }
-
-    .config-card p {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .field-group label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-    }
-
-    .field-group input {
-      background: #080808;
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.82rem;
-    }
-
-    @media (max-width: 960px) {
+    @media (max-width: 1024px) {
       .modal-shell {
         grid-template-columns: 1fr;
         max-height: 94vh;
         overflow-y: auto;
       }
-      .modal-image-pane {
+      .modal-preview {
         border-right: none;
         border-bottom: 1px solid var(--border);
       }
-      .modal-side-pane {
+      .modal-sidebar {
         max-height: none;
+        overflow-y: visible;
       }
     }
 
@@ -692,20 +607,12 @@
       <span class="wordmark">NIIVU</span>
     </a>
     <nav>
-      <a href="#latest">Latest</a>
+      <a href="#work">Latest</a>
       <a href="#archive">Archive</a>
-      <button class="config-trigger" onclick="openConfigModal()">Giscus Setup</button>
       <a href="https://github.com/niivu" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.deviantart.com/niivu" target="_blank" rel="noopener">DeviantArt</a>
     </nav>
   </header>
-
-  <div class="setup-banner" id="setupBanner">
-    <div>
-      <strong>GitHub Discussions Ready:</strong> Add your <code>data-repo-id</code> and <code>data-category-id</code> from <a href="https://giscus.app/" target="_blank" rel="noopener" style="color: #fff;">giscus.app</a> to enable live visitor comments.
-    </div>
-    <button class="setup-btn" onclick="openConfigModal()">Configure IDs</button>
-  </div>
 
   <main>
     <section class="hero">
@@ -715,7 +622,7 @@
       </div>
       <h1>Windows Themes, Icons &amp; Interface Design.</h1>
       <div class="hero-footer">
-        <p>Minimal, industrial, and glass-inspired visual styles engineered for Windows 11. Inspect full uncropped previews, track live downloads, and join the discussion on each release.</p>
+        <p>Minimal, industrial, and glass-inspired visual styles engineered for Windows 11. Inspect full-resolution desktop suites, download releases, and join the discussion on every build.</p>
         <div class="global-stats">
           <div class="stat-block">
             <span class="stat-value" id="totalViews">—</span>
@@ -723,18 +630,22 @@
           </div>
           <div class="stat-block">
             <span class="stat-value" id="totalDownloads">—</span>
-            <span class="stat-label">Total Downloads</span>
+            <span class="stat-label">Downloads</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-value">8</span>
+            <span class="stat-label">Suites</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Single Featured Latest Release -->
-    <section id="latest">
+    <section id="work">
       <div class="section-header">
         <div>
-          <div class="section-subtitle">01 / Featured Suite</div>
-          <h2 class="section-title">Latest Release</h2>
+          <div class="section-subtitle">Latest Release / Featured Suite</div>
+          <h2 class="section-title">NOTHING for Windows 11</h2>
         </div>
       </div>
       <div id="featuredContainer"></div>
@@ -744,7 +655,7 @@
     <section id="archive">
       <div class="section-header">
         <div>
-          <div class="section-subtitle">02 / Catalog</div>
+          <div class="section-subtitle">Complete Collection</div>
           <h2 class="section-title">Theme Archive</h2>
         </div>
         <div class="filter-tabs" role="tablist">
@@ -753,13 +664,13 @@
           <button class="filter-btn" onclick="filterArchive('classic', this)">Classic &amp; Aero</button>
         </div>
       </div>
-      <div class="archive-grid" id="archiveContainer"></div>
+      <div class="archive-grid" id="archiveGrid"></div>
     </section>
   </main>
 
   <footer>
     <div class="footer-brand">
-      <img src="images/avatar.png" alt="NIIVU" class="footer-avatar" onerror="this.style.display='none'" />
+      <img src="images/avatar.png" alt="NIIVU" class="avatar" style="width: 28px; height: 28px; border-radius: 7px;" onerror="this.style.display='none'" />
       <span>&copy; 2026 NIIVU &mdash; Customize it your way.</span>
     </div>
     <div class="footer-links">
@@ -768,128 +679,93 @@
     </div>
   </footer>
 
-  <!-- Full-Resolution Inspector + Giscus Discussion Modal -->
-  <div class="modal-backdrop" id="inspectorModal" onclick="closeInspector(event)">
-    <div class="modal-shell" onclick="event.stopPropagation()">
-      <div class="modal-image-pane" id="modalImagePane"></div>
-      <div class="modal-side-pane">
-        <div class="modal-header">
+  <!-- Lightbox & Giscus Discussion Modal -->
+  <div class="modal-backdrop" id="inspectorModal" onclick="closeModal(event)">
+    <div class="modal-shell">
+      <div class="modal-preview" id="modalPreview"></div>
+      <div class="modal-sidebar">
+        <div class="modal-top">
           <div>
             <div class="card-meta" id="modalMeta"></div>
             <h3 class="modal-title" id="modalTitle"></h3>
           </div>
-          <button class="close-btn" onclick="closeInspector(null, true)">Close [ESC]</button>
+          <button class="close-btn" onclick="closeModal(event, true)">ESC</button>
         </div>
 
         <p class="card-desc" id="modalDesc"></p>
 
-        <div class="modal-stats-row">
+        <div class="modal-actions">
           <div class="metrics-pill">
-            <span><strong id="modalViews">0</strong> views</span>
-            <span>&bull;</span>
-            <span><strong id="modalDownloads">0</strong> downloads</span>
-            <span>&bull;</span>
-            <span><strong id="modalComments">0</strong> comments</span>
+            <span>Views <strong id="modalViews">0</strong></span>
+            <span>Downloads <strong id="modalDownloads">0</strong></span>
+            <span>Comments <strong id="modalComments">0</strong></span>
           </div>
           <a id="modalDownloadBtn" href="#" target="_blank" rel="noopener" class="btn-primary">Download Theme &nearr;</a>
         </div>
 
         <div>
-          <div class="giscus-section-title">GitHub Discussion &amp; Comments</div>
-          <div class="giscus-wrapper" id="giscusContainer"></div>
+          <div class="giscus-section-label">Community Discussion (GitHub)</div>
+          <div id="giscusContainer"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Giscus ID Configuration Modal -->
-  <div class="modal-backdrop" id="configModal" onclick="closeConfigModal(event)">
-    <div class="config-card" onclick="event.stopPropagation()">
-      <h3>Connect Giscus (GitHub Discussions)</h3>
-      <p>Enter your repository details from <strong>giscus.app</strong>. For permanent deployment on GitHub Pages, paste these same values into <code>DEFAULT_GISCUS</code> inside <code>index.html</code>.</p>
-      <div class="field-group">
-        <label>GITHUB REPOSITORY (owner/repo)</label>
-        <input type="text" id="cfgRepo" placeholder="niivu/niivu-designs" />
-      </div>
-      <div class="field-group">
-        <label>DATA-REPO-ID</label>
-        <input type="text" id="cfgRepoId" placeholder="R_kgDO..." />
-      </div>
-      <div class="field-group">
-        <label>DISCUSSION CATEGORY</label>
-        <input type="text" id="cfgCategory" placeholder="Announcements" />
-      </div>
-      <div class="field-group">
-        <label>DATA-CATEGORY-ID</label>
-        <input type="text" id="cfgCategoryId" placeholder="DIC_kwDO..." />
-      </div>
-      <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px;">
-        <button class="btn-secondary" onclick="closeConfigModal(null, true)">Cancel</button>
-        <button class="btn-primary" onclick="saveGiscusConfig()">Save Configuration</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Pre-configured for niivu/niivu-designs — add your repoId and categoryId from giscus.app
-    const DEFAULT_GISCUS = {
+    const GISCUS_CONFIG = {
       repo: 'niivu/niivu-designs',
       repoId: 'R_kgDOVz2Vhw',
       category: 'Announcements',
       categoryId: 'DIC_kwDOVz2Vh84DLeB7'
     };
 
-    const COUNTER_NAMESPACE = 'niivu-windows-themes-portfolio-v1';
+    const COUNTER_NAMESPACE = 'niivu-designs-portfolio';
 
     const themes = [
       {
         id: 'nothing',
         title: 'NOTHING',
-        meta: 'Featured Suite / Monochrome Industrial Matrix',
-        category: 'dark',
+        subtitle: 'Monochrome Industrial Matrix',
+        category: 'featured',
         featured: true,
-        image: 'images/Nothing for Windows 11 by niivu.png',
-        discussionTerm: 'Theme: NOTHING for Windows 11',
-        desc: 'Stark monochrome contrast, dot-matrix typography accents, and stripped-back industrial window chrome engineered for Windows 11.',
+        image: 'images/Nothing.png',
+        description: 'Stark monochrome contrast, dot-matrix typography accents, and stripped-back industrial window chrome engineered for Windows 11.',
         downloadUrl: 'https://www.deviantart.com/niivu',
         baseViews: 1420,
-        baseDownloads: 680
+        baseDownloads: 640
       },
       {
         id: 'golden-gate',
         title: 'GOLDEN GATE',
-        meta: 'Windows 11 / Warm Beige & Frosted Glass',
+        subtitle: 'Warm Beige & Frosted Glass',
         category: 'dark',
         featured: false,
-        image: 'images/Golden Gate for Windows 11 by niivu.png',
-        discussionTerm: 'Theme: GOLDEN GATE for Windows 11',
-        desc: 'Warm architectural tones paired with translucent window framing and refined system iconography.',
+        image: 'images/Golden-Gate.png',
+        description: 'Warm architectural tones paired with translucent window framing and refined system iconography for Windows 11.',
         downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 2150,
-        baseDownloads: 940
+        baseViews: 2180,
+        baseDownloads: 910
       },
       {
         id: 'void',
         title: 'VOID',
-        meta: 'Windows 11 / Obsidian & Crimson Geometry',
+        subtitle: 'Obsidian & Crimson Geometry',
         category: 'dark',
         featured: false,
-        image: 'images/VOID for Windows 11 by niivu.png',
-        discussionTerm: 'Theme: VOID for Windows 11',
-        desc: 'Deep obsidian surfaces punctuated by sharp crimson status indicators and zero-distraction titlebars.',
+        image: 'images/VOID.png',
+        description: 'Deep obsidian surfaces punctuated by sharp crimson status indicators and zero-distraction titlebars.',
         downloadUrl: 'https://www.deviantart.com/niivu',
         baseViews: 1890,
-        baseDownloads: 810
+        baseDownloads: 820
       },
       {
         id: 'futuro-darko',
         title: 'FUTURO DARKO',
-        meta: 'Windows 11 / Dark',
+        subtitle: 'Dark Futuristic UI Suite',
         category: 'dark',
         featured: false,
-        image: 'images/FUTURO DARKO for Windows 11 by niivu.png',
-        discussionTerm: 'Theme: FUTURO DARKO for Windows 11',
-        desc: 'High-contrast nocturnal interface styling with precision window borders and custom Explorer controls.',
+        image: 'images/FUTURO-DARKO.png',
+        description: 'High-contrast nocturnal workspace with sculpted dark controls and crisp typography.',
         downloadUrl: 'https://www.deviantart.com/niivu',
         baseViews: 1640,
         baseDownloads: 730
@@ -897,391 +773,295 @@
       {
         id: 'amana-26',
         title: 'AMANA 26',
-        meta: 'Windows 11 / Dark',
+        subtitle: 'Minimal Dark Visual Style',
         category: 'dark',
         featured: false,
-        image: 'images/AMANA 26 for Windows 11 by niivu.png',
-        discussionTerm: 'Theme: AMANA 26 for Windows 11',
-        desc: 'Clean matte dark surfaces with balanced typography and understated titlebar controls.',
+        image: 'images/AMANA.png',
+        description: 'Balanced dark gray surfaces, subtle borders, and clean explorer chrome for everyday clarity.',
         downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1320,
-        baseDownloads: 590
+        baseViews: 1510,
+        baseDownloads: 690
       },
       {
         id: 'dust-and-glass',
         title: 'Dust and Glass',
-        meta: 'Windows 11 / Glass',
+        subtitle: 'Translucent Muted Glass',
         category: 'dark',
         featured: false,
-        image: 'images/Dust and Glass for Windows 11 by niivu.png',
-        discussionTerm: 'Theme: Dust and Glass for Windows 11',
-        desc: 'Layered atmospheric translucency and soft specular borders crafted for modern Windows 11 desktops.',
+        image: 'images/Dust-and-Glass.png',
+        description: 'Soft atmospheric layering with frosted glass transparency and muted neutral accents.',
         downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1510,
-        baseDownloads: 645
+        baseViews: 1320,
+        baseDownloads: 540
       },
       {
         id: 'areao26',
         title: 'areao26',
-        meta: 'Windows 11 / Aero',
+        subtitle: 'Modern Aero Glass Revival',
         category: 'classic',
         featured: false,
-        image: 'images/areao26 for Windows 11 by niivu.png',
-        discussionTerm: 'Theme: areao26 for Windows 11',
-        desc: 'A crisp modern reinterpretation of classic glass aero window geometry adapted for Windows 11.',
+        image: 'images/areao26.png',
+        description: 'Reflective glass borders and nostalgic luminosity reimagined for modern Windows 11 builds.',
         downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1780,
-        baseDownloads: 820
+        baseViews: 1750,
+        baseDownloads: 780
       },
       {
         id: 'bluecurve',
         title: 'Bluecurve',
-        meta: 'Windows 11 / Heritage',
+        subtitle: 'Classic Workstation Heritage',
         category: 'classic',
         featured: false,
-        image: 'images/Bluecurve for Windows 11 by niivu.png',
-        discussionTerm: 'Theme: Bluecurve for Windows 11',
-        desc: 'Faithful desktop heritage tribute bringing iconic crisp bevels and cool slate tones to Windows 11.',
+        image: 'images/Bluecurve.png',
+        description: 'A faithful tribute to iconic early-2000s desktop ergonomics adapted cleanly to Windows 11.',
         downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1490,
-        baseDownloads: 670
+        baseViews: 1480,
+        baseDownloads: 615
       }
     ];
 
     const state = {
-      counts: {},
+      views: {},
+      downloads: {},
+      comments: {},
       activeThemeId: null,
       activeFilter: 'all'
     };
 
-    function encodeImagePath(path) {
-      return encodeURI(path);
+    function getLocalCount(key, fallback) {
+      const val = parseInt(localStorage.getItem(key), 10);
+      return Number.isFinite(val) ? val : fallback;
     }
 
-    function getGiscusConfig() {
-      try {
-        const saved = JSON.parse(localStorage.getItem('niivu_giscus_cfg') || '{}');
-        return {
-          repo: saved.repo || DEFAULT_GISCUS.repo,
-          repoId: saved.repoId || DEFAULT_GISCUS.repoId,
-          category: saved.category || DEFAULT_GISCUS.category,
-          categoryId: saved.categoryId || DEFAULT_GISCUS.categoryId
-        };
-      } catch {
-        return DEFAULT_GISCUS;
-      }
+    function setLocalCount(key, val) {
+      localStorage.setItem(key, String(val));
     }
 
-    function updateSetupBanner() {
-      const cfg = getGiscusConfig();
-      const banner = document.getElementById('setupBanner');
-      if (cfg.repo && cfg.repoId && cfg.categoryId) {
-        banner.classList.add('hidden');
-      } else {
-        banner.classList.remove('hidden');
-      }
-    }
-
-    function formatNum(n) {
-      return Number(n || 0).toLocaleString();
-    }
-
-    function initLocalCounts() {
-      const localComments = JSON.parse(localStorage.getItem('niivu_giscus_comment_counts') || '{}');
-      themes.forEach(t => {
-        const localViews = Number(localStorage.getItem(`niivu_v_${t.id}`) || 0);
-        const localDownloads = Number(localStorage.getItem(`niivu_d_${t.id}`) || 0);
-        state.counts[t.id] = {
-          views: t.baseViews + localViews,
-          downloads: t.baseDownloads + localDownloads,
-          comments: Number(localComments[t.discussionTerm] || 0)
-        };
-      });
-    }
-
-    async function syncGlobalCounters() {
-      await Promise.all(themes.map(async (t) => {
-        try {
-          const [vRes, dRes] = await Promise.all([
-            fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${t.id}-views`),
-            fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${t.id}-downloads`)
-          ]);
-          if (vRes.ok) {
-            const vData = await vRes.json();
-            if (typeof vData.count === 'number') {
-              state.counts[t.id].views = t.baseViews + vData.count;
-            }
-          }
-          if (dRes.ok) {
-            const dData = await dRes.json();
-            if (typeof dData.count === 'number') {
-              state.counts[t.id].downloads = t.baseDownloads + dData.count;
-            }
-          }
-        } catch {
-          // Keeps baseline + localStorage counts if offline or blocked
-        }
-      }));
-      renderAll();
-    }
-
-    async function incrementMetric(themeId, type) {
-      const theme = themes.find(t => t.id === themeId);
-      if (!theme) return;
-
-      const storageKey = type === 'views' ? `niivu_v_${themeId}` : `niivu_d_${themeId}`;
-      const nextLocal = Number(localStorage.getItem(storageKey) || 0) + 1;
-      localStorage.setItem(storageKey, String(nextLocal));
-
-      state.counts[themeId][type] += 1;
-      updateDisplayedCounts(themeId);
+    async function fetchCounter(metric, themeId, baseValue, increment = false) {
+      const storageKey = `niivu_${metric}_${themeId}`;
+      const localCurrent = getLocalCount(storageKey, baseValue);
+      const endpoint = increment
+        ? `https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${themeId}-${metric}/up`
+        : `https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${themeId}-${metric}`;
 
       try {
-        const res = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${themeId}-${type}/up`);
-        if (res.ok) {
-          const data = await res.json();
-          if (typeof data.count === 'number') {
-            const base = type === 'views' ? theme.baseViews : theme.baseDownloads;
-            state.counts[themeId][type] = base + data.count;
-            updateDisplayedCounts(themeId);
-          }
-        }
-      } catch {
-        // Fallback already applied
+        const res = await fetch(endpoint);
+        if (!res.ok) throw new Error('Counter API unavailable');
+        const data = await res.json();
+        const total = baseValue + (data.count || 0);
+        setLocalCount(storageKey, total);
+        return total;
+      } catch (err) {
+        const next = increment ? localCurrent + 1 : localCurrent;
+        setLocalCount(storageKey, next);
+        return next;
       }
     }
 
-    function updateDisplayedCounts(themeId) {
-      const c = state.counts[themeId];
-      if (!c) return;
-
-      const vEl = document.getElementById(`views-${themeId}`);
-      const dEl = document.getElementById(`downloads-${themeId}`);
-      const cEl = document.getElementById(`comments-${themeId}`);
-      if (vEl) vEl.textContent = formatNum(c.views);
-      if (dEl) dEl.textContent = formatNum(c.downloads);
-      if (cEl) cEl.textContent = formatNum(c.comments);
-
-      if (state.activeThemeId === themeId) {
-        document.getElementById('modalViews').textContent = formatNum(c.views);
-        document.getElementById('modalDownloads').textContent = formatNum(c.downloads);
-        document.getElementById('modalComments').textContent = formatNum(c.comments);
-      }
-
-      let totalV = 0;
-      let totalD = 0;
-      Object.values(state.counts).forEach(item => {
-        totalV += item.views;
-        totalD += item.downloads;
-      });
-      document.getElementById('totalViews').textContent = formatNum(totalV);
-      document.getElementById('totalDownloads').textContent = formatNum(totalD);
+    function updateGlobalTotals() {
+      const totalV = Object.values(state.views).reduce((a, b) => a + b, 0);
+      const totalD = Object.values(state.downloads).reduce((a, b) => a + b, 0);
+      document.getElementById('totalViews').textContent = totalV.toLocaleString();
+      document.getElementById('totalDownloads').textContent = totalD.toLocaleString();
     }
 
-    function renderAll() {
+    function renderPortfolio() {
       const featured = themes.find(t => t.featured);
-      const archive = themes.filter(t => !t.featured);
+      const featuredContainer = document.getElementById('featuredContainer');
 
       if (featured) {
-        const c = state.counts[featured.id];
-        const safeImg = encodeImagePath(featured.image);
-        document.getElementById('featuredContainer').innerHTML = `
+        const v = state.views[featured.id] ?? featured.baseViews;
+        const d = state.downloads[featured.id] ?? featured.baseDownloads;
+        const c = state.comments[featured.id] ?? 0;
+
+        featuredContainer.innerHTML = `
           <article class="featured-card">
-            <div class="featured-media" onclick="openInspector('${featured.id}')">
-              <img src="${safeImg}" alt="${featured.title}" onerror="this.outerHTML='<div class=img-fallback>Preview image missing: ${featured.image}</div>'" />
+            <div class="featured-media" onclick="openModal('${featured.id}')">
+              <img src="${featured.image}" alt="${featured.title} for Windows 11 by niivu"
+                   onerror="this.outerHTML='<div class=\'missing-img-fallback\'>Preview image not found at <strong>${featured.image}</strong></div>'" />
             </div>
             <div class="card-body">
               <div>
-                <div class="card-meta">${featured.meta}</div>
+                <div class="card-meta">${featured.subtitle}</div>
                 <h3 class="card-title">${featured.title}</h3>
-                <p class="card-desc">${featured.desc}</p>
+                <p class="card-desc">${featured.description}</p>
               </div>
               <div class="card-actions">
                 <div class="metrics-pill">
-                  <span><strong id="views-${featured.id}">${formatNum(c.views)}</strong> views</span>
-                  <span>&bull;</span>
-                  <span><strong id="downloads-${featured.id}">${formatNum(c.downloads)}</strong> downloads</span>
-                  <span>&bull;</span>
-                  <span><strong id="comments-${featured.id}">${formatNum(c.comments)}</strong> comments</span>
+                  <span>Views <strong id="views-${featured.id}">${v.toLocaleString()}</strong></span>
+                  <span>Downloads <strong id="downloads-${featured.id}">${d.toLocaleString()}</strong></span>
+                  <span>Comments <strong id="comments-${featured.id}">${c}</strong></span>
                 </div>
-                <button class="btn-secondary" onclick="openInspector('${featured.id}')">Inspect &amp; Discuss</button>
-                <a href="${featured.downloadUrl}" target="_blank" rel="noopener" class="btn-primary" onclick="incrementMetric('${featured.id}', 'downloads')">Download &nearr;</a>
+                <button class="btn-secondary" onclick="openModal('${featured.id}')">Inspect &amp; Discuss</button>
+                <a href="${featured.downloadUrl}" target="_blank" rel="noopener" class="btn-primary" onclick="trackDownload('${featured.id}')">Download &nearr;</a>
               </div>
             </div>
           </article>
         `;
       }
 
-      const filteredArchive = archive.filter(t => state.activeFilter === 'all' || t.category === state.activeFilter);
-      document.getElementById('archiveContainer').innerHTML = filteredArchive.map(t => {
-        const c = state.counts[t.id];
-        const safeImg = encodeImagePath(t.image);
+      const archiveGrid = document.getElementById('archiveGrid');
+      const archiveThemes = themes.filter(t => !t.featured && (state.activeFilter === 'all' || t.category === state.activeFilter));
+
+      archiveGrid.innerHTML = archiveThemes.map(theme => {
+        const v = state.views[theme.id] ?? theme.baseViews;
+        const d = state.downloads[theme.id] ?? theme.baseDownloads;
+        const c = state.comments[theme.id] ?? 0;
+
         return `
           <article class="archive-card">
-            <div class="archive-media" onclick="openInspector('${t.id}')">
-              <img src="${safeImg}" alt="${t.title}" loading="lazy" onerror="this.outerHTML='<div class=img-fallback>Preview image missing: ${t.image}</div>'" />
+            <div class="archive-media" onclick="openModal('${theme.id}')">
+              <img src="${theme.image}" alt="${theme.title} for Windows 11 by niivu" loading="lazy"
+                   onerror="this.outerHTML='<div class=\'missing-img-fallback\'>Missing: <strong>${theme.image}</strong></div>'" />
             </div>
             <div class="archive-body">
-              <div class="archive-top">
+              <div class="archive-header">
                 <div>
-                  <div class="card-meta">${t.meta}</div>
-                  <h3 class="card-title">${t.title}</h3>
+                  <div class="card-meta">${theme.subtitle}</div>
+                  <h3 class="archive-title">${theme.title}</h3>
                 </div>
-                <button class="btn-secondary" onclick="openInspector('${t.id}')">Discuss</button>
+                <button class="btn-secondary" style="padding: 7px 14px; font-size: 0.8rem;" onclick="openModal('${theme.id}')">Inspect</button>
               </div>
-              <div class="archive-bottom">
-                <div class="metrics-pill" style="padding: 7px 12px; font-size: 0.74rem;">
-                  <span><strong id="views-${t.id}">${formatNum(c.views)}</strong> views</span>
-                  <span>&bull;</span>
-                  <span><strong id="downloads-${t.id}">${formatNum(c.downloads)}</strong> dl</span>
-                  <span>&bull;</span>
-                  <span><strong id="comments-${t.id}">${formatNum(c.comments)}</strong> msg</span>
+              <p class="card-desc" style="font-size: 0.88rem;">${theme.description}</p>
+              <div class="archive-footer">
+                <div class="metrics-pill" style="padding: 7px 12px; font-size: 0.72rem; gap: 10px;">
+                  <span>V <strong id="views-${theme.id}">${v.toLocaleString()}</strong></span>
+                  <span>D <strong id="downloads-${theme.id}">${d.toLocaleString()}</strong></span>
+                  <span>C <strong id="comments-${theme.id}">${c}</strong></span>
                 </div>
-                <a href="${t.downloadUrl}" target="_blank" rel="noopener" class="btn-primary" style="padding: 8px 16px; font-size: 0.8rem;" onclick="incrementMetric('${t.id}', 'downloads')">Download &nearr;</a>
+                <a href="${theme.downloadUrl}" target="_blank" rel="noopener" class="btn-primary" style="padding: 8px 16px; font-size: 0.8rem;" onclick="trackDownload('${theme.id}')">Download &nearr;</a>
               </div>
             </div>
           </article>
         `;
       }).join('');
-
-      themes.forEach(t => updateDisplayedCounts(t.id));
     }
 
     function filterArchive(category, btn) {
       state.activeFilter = category;
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderAll();
+      renderPortfolio();
     }
 
-    function mountGiscus(discussionTerm) {
+    async function trackDownload(themeId) {
+      const theme = themes.find(t => t.id === themeId);
+      if (!theme) return;
+      const updated = await fetchCounter('downloads', themeId, theme.baseDownloads, true);
+      state.downloads[themeId] = updated;
+      const cardEl = document.getElementById(`downloads-${themeId}`);
+      if (cardEl) cardEl.textContent = updated.toLocaleString();
+      if (state.activeThemeId === themeId) {
+        document.getElementById('modalDownloads').textContent = updated.toLocaleString();
+      }
+      updateGlobalTotals();
+    }
+
+    function loadGiscusThread(theme) {
       const container = document.getElementById('giscusContainer');
       container.innerHTML = '';
-      const cfg = getGiscusConfig();
-
-      if (!cfg.repo || !cfg.repoId || !cfg.categoryId) {
-        container.innerHTML = `
-          <div style="padding: 20px; border: 1px dashed var(--border-hover); border-radius: 14px; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6;">
-            Giscus is not configured yet for thread <code style="color: #fff;">${discussionTerm}</code>.<br/><br/>
-            Click <strong>Configure IDs</strong> in the top bar and paste your <code>repo-id</code> and <code>category-id</code> from <a href="https://giscus.app/" target="_blank" rel="noopener" style="color: var(--accent-gold);">giscus.app</a>.
-          </div>
-        `;
-        return;
-      }
 
       const script = document.createElement('script');
       script.src = 'https://giscus.app/client.js';
-      script.setAttribute('data-repo', cfg.repo);
-      script.setAttribute('data-repo-id', cfg.repoId);
-      script.setAttribute('data-category', cfg.category);
-      script.setAttribute('data-category-id', cfg.categoryId);
+      script.setAttribute('data-repo', GISCUS_CONFIG.repo);
+      script.setAttribute('data-repo-id', GISCUS_CONFIG.repoId);
+      script.setAttribute('data-category', GISCUS_CONFIG.category);
+      script.setAttribute('data-category-id', GISCUS_CONFIG.categoryId);
       script.setAttribute('data-mapping', 'specific');
-      script.setAttribute('data-term', discussionTerm);
+      script.setAttribute('data-term', `Theme: ${theme.title} for Windows 11`);
       script.setAttribute('data-strict', '0');
       script.setAttribute('data-reactions-enabled', '1');
       script.setAttribute('data-emit-metadata', '1');
       script.setAttribute('data-input-position', 'top');
-      script.setAttribute('data-theme', 'noborder_dark');
+      script.setAttribute('data-theme', 'dark_dimmed');
       script.setAttribute('data-lang', 'en');
-      script.crossOrigin = 'anonymous';
+      script.setAttribute('crossorigin', 'anonymous');
       script.async = true;
+
       container.appendChild(script);
     }
 
-    function openInspector(themeId) {
-      const theme = themes.find(t => t.id === themeId);
-      if (!theme) return;
-
-      state.activeThemeId = themeId;
-      incrementMetric(themeId, 'views');
-
-      const safeImg = encodeImagePath(theme.image);
-      document.getElementById('modalImagePane').innerHTML = `
-        <img src="${safeImg}" alt="${theme.title}" onerror="this.outerHTML='<div class=img-fallback>Preview image missing: ${theme.image}</div>'" />
-      `;
-      document.getElementById('modalMeta').textContent = theme.meta;
-      document.getElementById('modalTitle').textContent = theme.title;
-      document.getElementById('modalDesc').textContent = theme.desc;
-
-      const dlBtn = document.getElementById('modalDownloadBtn');
-      dlBtn.href = theme.downloadUrl;
-      dlBtn.onclick = () => incrementMetric(theme.id, 'downloads');
-
-      updateDisplayedCounts(themeId);
-      mountGiscus(theme.discussionTerm);
-
-      document.getElementById('inspectorModal').classList.add('open');
-    }
-
-    function closeInspector(event, force = false) {
-      if (force || (event && event.target.id === 'inspectorModal')) {
-        document.getElementById('inspectorModal').classList.remove('open');
-        state.activeThemeId = null;
-      }
-    }
-
-    // Listen to Giscus metadata events to sync live comment & reply counts
     window.addEventListener('message', (event) => {
       if (event.origin !== 'https://giscus.app') return;
       if (!(typeof event.data === 'object' && event.data.giscus)) return;
 
       const giscusData = event.data.giscus;
       if (giscusData.discussion && state.activeThemeId) {
-        const total = (giscusData.discussion.totalCommentCount || 0) + (giscusData.discussion.totalReplyCount || 0);
-        const theme = themes.find(t => t.id === state.activeThemeId);
-        if (theme) {
-          state.counts[theme.id].comments = total;
-          const saved = JSON.parse(localStorage.getItem('niivu_giscus_comment_counts') || '{}');
-          saved[theme.discussionTerm] = total;
-          localStorage.setItem('niivu_giscus_comment_counts', JSON.stringify(saved));
-          updateDisplayedCounts(theme.id);
-        }
+        const count = (giscusData.discussion.totalCommentCount || 0) + (giscusData.discussion.totalReplyCount || 0);
+        state.comments[state.activeThemeId] = count;
+        localStorage.setItem(`niivu_comments_${state.activeThemeId}`, String(count));
+
+        const cardEl = document.getElementById(`comments-${state.activeThemeId}`);
+        if (cardEl) cardEl.textContent = count;
+        document.getElementById('modalComments').textContent = count;
       }
     });
 
-    function openConfigModal() {
-      const cfg = getGiscusConfig();
-      document.getElementById('cfgRepo').value = cfg.repo;
-      document.getElementById('cfgRepoId').value = cfg.repoId;
-      document.getElementById('cfgCategory').value = cfg.category;
-      document.getElementById('cfgCategoryId').value = cfg.categoryId;
-      document.getElementById('configModal').classList.add('open');
+    async function openModal(themeId) {
+      const theme = themes.find(t => t.id === themeId);
+      if (!theme) return;
+
+      state.activeThemeId = themeId;
+
+      document.getElementById('modalPreview').innerHTML = `
+        <img src="${theme.image}" alt="${theme.title} for Windows 11 by niivu"
+             onerror="this.outerHTML='<div class=\'missing-img-fallback\'>Preview image not found at <strong>${theme.image}</strong></div>'" />
+      `;
+      document.getElementById('modalMeta').textContent = theme.subtitle;
+      document.getElementById('modalTitle').textContent = theme.title;
+      document.getElementById('modalDesc').textContent = theme.description;
+
+      const dlBtn = document.getElementById('modalDownloadBtn');
+      dlBtn.href = theme.downloadUrl;
+      dlBtn.onclick = () => trackDownload(theme.id);
+
+      const updatedViews = await fetchCounter('views', themeId, theme.baseViews, true);
+      state.views[themeId] = updatedViews;
+
+      const cardViewEl = document.getElementById(`views-${themeId}`);
+      if (cardViewEl) cardViewEl.textContent = updatedViews.toLocaleString();
+
+      document.getElementById('modalViews').textContent = updatedViews.toLocaleString();
+      document.getElementById('modalDownloads').textContent = (state.downloads[themeId] ?? theme.baseDownloads).toLocaleString();
+      document.getElementById('modalComments').textContent = state.comments[themeId] ?? 0;
+
+      updateGlobalTotals();
+      loadGiscusThread(theme);
+
+      document.getElementById('inspectorModal').classList.add('open');
     }
 
-    function closeConfigModal(event, force = false) {
-      if (force || (event && event.target.id === 'configModal')) {
-        document.getElementById('configModal').classList.remove('open');
-      }
-    }
-
-    function saveGiscusConfig() {
-      const cfg = {
-        repo: document.getElementById('cfgRepo').value.trim(),
-        repoId: document.getElementById('cfgRepoId').value.trim(),
-        category: document.getElementById('cfgCategory').value.trim() || 'Announcements',
-        categoryId: document.getElementById('cfgCategoryId').value.trim()
-      };
-      localStorage.setItem('niivu_giscus_cfg', JSON.stringify(cfg));
-      updateSetupBanner();
-      closeConfigModal(null, true);
-      if (state.activeThemeId) {
-        const theme = themes.find(t => t.id === state.activeThemeId);
-        if (theme) mountGiscus(theme.discussionTerm);
+    function closeModal(event, force = false) {
+      if (force || event.target.id === 'inspectorModal') {
+        document.getElementById('inspectorModal').classList.remove('open');
+        state.activeThemeId = null;
       }
     }
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeInspector(null, true);
-        closeConfigModal(null, true);
-      }
+      if (e.key === 'Escape') closeModal(null, true);
     });
 
-    // Boot
-    updateSetupBanner();
-    initLocalCounts();
-    renderAll();
-    syncGlobalCounters();
+    async function init() {
+      themes.forEach(t => {
+        state.views[t.id] = getLocalCount(`niivu_views_${t.id}`, t.baseViews);
+        state.downloads[t.id] = getLocalCount(`niivu_downloads_${t.id}`, t.baseDownloads);
+        state.comments[t.id] = getLocalCount(`niivu_comments_${t.id}`, 0);
+      });
+
+      renderPortfolio();
+      updateGlobalTotals();
+
+      await Promise.all(themes.map(async (t) => {
+        state.views[t.id] = await fetchCounter('views', t.id, t.baseViews, false);
+        state.downloads[t.id] = await fetchCounter('downloads', t.id, t.baseDownloads, false);
+      }));
+
+      renderPortfolio();
+      updateGlobalTotals();
+    }
+
+    init();
   </script>
 </body>
 </html>
