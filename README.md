@@ -3,7 +3,7 @@
   <h1>NIIVU — Windows Themes, Icons & Interface Design</h1>
   <p><strong>Customize it your way.</strong></p>
   <p>
-    <a href="[https://github.io](https://niivu.github.io/niivu-designs/#)"><strong>View Live Portfolio &rarr;</strong></a>
+    <a href="https://niivu.github.io/niivu-designs/#"><strong>View Live Portfolio &rarr;</strong></a>
     &nbsp;&middot;&nbsp;
     <a href="https://deviantart.com/niivu">DeviantArt</a>
     &nbsp;&middot;&nbsp;
