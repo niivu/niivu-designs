@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIIVU — Windows Themes, Icons &amp; Interface Design</title>
+  <link rel="icon" type="image/png" href="images/avatar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #111111;
+      --surface-elevated: #161616;
+      --border: #222222;
+      --border-hover: #3a3a3a;
+      --text-primary: #f5f5f5;
+      --text-secondary: #888888;
+      --accent: #e11d48;
+      --accent-gold: #d6c3a5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Header & Avatar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid var(--border-hover);
+      background: #141414;
+    }
+
+    .wordmark {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a, .config-trigger {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    nav a:hover, .config-trigger:hover {
+      color: var(--text-primary);
+    }
+
+    /* Setup Banner */
+    .setup-banner {
+      margin-top: 24px;
+      background: #12100d;
+      border: 1px solid #382e1e;
+      border-radius: 14px;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #d6c3a5;
+    }
+
+    .setup-banner.hidden {
+      display: none;
+    }
+
+    .setup-banner code {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+    }
+
+    .setup-btn {
+      background: #d6c3a5;
+      color: #080808;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 88px 0 76px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tagline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 28px;
+    }
+
+    .tagline-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6.8vw, 5.8rem);
+      font-weight: 600;
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+      max-width: 1080px;
+      margin-bottom: 24px;
+    }
+
+    .hero-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .global-stats {
+      display: flex;
+      gap: 28px;
+      padding: 16px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .stat-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 68px 0 32px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      background: var(--surface);
+      padding: 4px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #222222;
+      color: var(--text-primary);
+    }
+
+    /* Featured Latest Release — Full Uncropped Image */
+    .featured-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      transition: border-color 0.3s ease;
+    }
+
+    .featured-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .featured-media {
+      width: 100%;
+      background: #050505;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      display: block;
+    }
+
+    .card-body {
+      padding: 32px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .card-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 560px;
+      line-height: 1.55;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .metrics-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #0c0c0c;
+      border: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .metrics-pill span strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--text-primary);
+      color: #080808;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+    }
+
+    .btn-secondary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    /* Archive Grid — Uncropped Images */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 32px;
+      margin-bottom: 100px;
+      align-items: start;
+    }
+
+    .archive-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .archive-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+    }
+
+    .archive-media {
+      width: 100%;
+      background: #050505;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .archive-media img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .archive-body {
+      padding: 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .archive-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .archive-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .archive-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .mini-metrics {
+      display: flex;
+      gap: 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+    }
+
+    .mini-metrics strong {
+      color: var(--text-primary);
+    }
+
+    .mini-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mini-btn {
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .mini-btn:hover {
+      background: #202020;
+    }
+
+    .mini-btn.dl {
+      background: #1d1d1d;
+      border-color: #333333;
+    }
+
+    /* Missing Image Fallback */
+    .img-fallback {
+      width: 100%;
+      min-height: 240px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 28px;
+      text-align: center;
+      background: #0d0d0d;
+      color: var(--text-secondary);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Inspector Modal with Giscus Discussions */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.94);
+      backdrop-filter: blur(12px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 24px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-shell {
+      width: 100%;
+      max-width: 1320px;
+      max-height: 90vh;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.85);
+    }
+
+    .modal-image-pane {
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      padding: 20px;
+      border-right: 1px solid var(--border);
+    }
+
+    .modal-image-pane img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .modal-sidebar {
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
+      background: var(--surface);
+    }
+
+    .modal-header {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .modal-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .close-btn {
+      background: #1a1a1a;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .modal-meta-bar {
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: #0d0d0d;
+    }
+
+    .giscus-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    .giscus-header-note {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .giscus-header-note a {
+      color: var(--accent-gold);
+      text-decoration: none;
+    }
+
+    /* Config Modal */
+    .config-card {
+      width: 100%;
+      max-width: 560px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .config-card h3 {
+      font-size: 1.25rem;
+    }
+
+    .config-card p {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-group label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    .field-group input {
+      background: #090909;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .field-group input:focus {
+      outline: none;
+      border-color: var(--border-hover);
+    }
+
+    @media (max-width: 960px) {
+      .modal-shell {
+        grid-template-columns: 1fr;
+        max-height: 94vh;
+        overflow-y: auto;
+      }
+      .modal-image-pane {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .modal-sidebar {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 0 20px; }
+      .hero { padding: 56px 0; }
+      .archive-grid { grid-template-columns: 1fr; }
+      .card-body { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="brand">
+      <img src="images/avatar.png" alt="NIIVU Avatar" class="avatar" onerror="this.style.display='none'" />
+      <span class="wordmark">NIIVU</span>
+    </a>
+    <nav>
+      <a href="#latest">Latest</a>
+      <a href="#archive">Archive</a>
+      <button type="button" class="config-trigger" onclick="openConfigModal()">Giscus Setup</button>
+      <a href="https://github.com/niivu" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.deviantart.com/niivu" target="_blank" rel="noopener">DeviantArt</a>
+    </nav>
+  </header>
+
+  <div class="setup-banner" id="setupBanner">
+    <span>
+      <strong>GitHub Discussions &amp; Live Counters Ready:</strong> Add your <code>repo-id</code> &amp; <code>category-id</code> from giscus.app to activate live shared comments and reaction counts.
+    </span>
+    <button type="button" class="setup-btn" onclick="openConfigModal()">Configure Giscus</button>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="tagline-pill">
+        <span class="tagline-dot"></span>
+        <span>Customize it your way</span>
+      </div>
+      <h1>Windows Themes, Icons &amp; Interface Design.</h1>
+      <div class="hero-footer">
+        <p>Minimal visual styles, custom icon packs, and tailored desktop environments built for Windows 11. Click any release to inspect the full uncropped preview, join the GitHub Discussion, or download.</p>
+        <div class="global-stats">
+          <div class="stat-block">
+            <span class="stat-value" id="totalViews">—</span>
+            <span class="stat-label">Total Views</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-value" id="totalDownloads">—</span>
+            <span class="stat-label">Downloads</span>
+          </div>
+          <div class="stat-block">
+            <span class="stat-value" id="totalDiscussions">8</span>
+            <span class="stat-label">Releases</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Single Featured Latest Release (Full Uncropped Image) -->
+    <section id="latest">
+      <div class="section-header">
+        <div>
+          <div class="section-subtitle">Latest Release / Featured Suite</div>
+          <h2 class="section-title">NOTHING for Windows 11</h2>
+        </div>
+      </div>
+
+      <article class="featured-card" data-theme-id="nothing">
+        <div class="featured-media" onclick="openInspector('nothing')">
+          <img
+            src="images/Nothing for Windows 11 by niivu.png"
+            alt="Nothing for Windows 11 by niivu"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="img-fallback">
+            <strong>Nothing for Windows 11 by niivu.png</strong>
+            <span>Place PNG inside images/ folder to render full preview</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">Featured Suite &bull; Monochrome Industrial Matrix</div>
+            <h3 class="card-title">NOTHING</h3>
+            <p class="card-desc">Stark monochrome contrast, dot-matrix typography accents, matching custom icons, and stripped-back industrial window chrome crafted for Windows 11.</p>
+          </div>
+          <div class="card-actions">
+            <div class="metrics-pill">
+              <span>Views: <strong data-views="nothing">—</strong></span>
+              <span>Downloads: <strong data-downloads="nothing">—</strong></span>
+              <span>Comments: <strong data-comments="nothing">0</strong></span>
+            </div>
+            <button type="button" class="btn-secondary" onclick="openInspector('nothing')">Inspect &amp; Discuss</button>
+            <a
+              href="https://www.deviantart.com/niivu"
+              target="_blank"
+              rel="noopener"
+              class="btn-primary"
+              onclick="trackDownload('nothing')"
+            >Download Suite &nearr;</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Archive Grid (Full Uncropped Images) -->
+    <section id="archive">
+      <div class="section-header">
+        <div>
+          <div class="section-subtitle">Previous Releases</div>
+          <h2 class="section-title">Theme Archive</h2>
+        </div>
+        <div class="filter-tabs" role="tablist">
+          <button type="button" class="filter-btn active" onclick="filterArchive('all', this)">All (7)</button>
+          <button type="button" class="filter-btn" onclick="filterArchive('dark', this)">Dark &amp; Glass</button>
+          <button type="button" class="filter-btn" onclick="filterArchive('classic', this)">Classic &amp; Aero</button>
+        </div>
+      </div>
+
+      <div class="archive-grid" id="archiveGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="images/avatar.png" alt="NIIVU" class="avatar" style="width: 28px; height: 28px; border-radius: 7px;" onerror="this.style.display='none'" />
+      <span>&copy; 2026 NIIVU &mdash; Customize it your way.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#latest">Latest</a>
+      <a href="#archive">Archive</a>
+      <a href="https://github.com/niivu" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.deviantart.com/niivu" target="_blank" rel="noopener">DeviantArt</a>
+    </div>
+  </footer>
+
+  <!-- Full-Resolution Inspector + Giscus GitHub Discussions Modal -->
+  <div class="modal-backdrop" id="inspectorModal" onclick="closeInspector(event)">
+    <div class="modal-shell">
+      <div class="modal-image-pane">
+        <img id="modalImg" src="" alt="Theme Preview" />
+      </div>
+      <div class="modal-sidebar">
+        <div class="modal-header">
+          <div>
+            <div class="card-meta" id="modalCategory" style="margin-bottom: 4px;"></div>
+            <h3 class="modal-title" id="modalTitle"></h3>
+          </div>
+          <button type="button" class="close-btn" onclick="closeInspector(event, true)">Close [ESC]</button>
+        </div>
+
+        <div class="modal-meta-bar">
+          <div class="mini-metrics">
+            <span>Views: <strong id="modalViews">—</strong></span>
+            <span>Downloads: <strong id="modalDownloads">—</strong></span>
+            <span>Comments: <strong id="modalComments">0</strong></span>
+          </div>
+          <a
+            id="modalDownloadLink"
+            href="https://www.deviantart.com/niivu"
+            target="_blank"
+            rel="noopener"
+            class="btn-primary"
+            style="padding: 8px 16px; font-size: 0.8rem;"
+          >Download &nearr;</a>
+        </div>
+
+        <div class="giscus-scroll-area">
+          <div class="giscus-header-note">
+            <span>Powered by GitHub Discussions</span>
+            <a href="https://giscus.app/" target="_blank" rel="noopener">giscus.app &nearr;</a>
+          </div>
+          <div id="giscusContainer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Giscus Configuration Modal -->
+  <div class="modal-backdrop" id="configModal" onclick="closeConfigModal(event)">
+    <div class="config-card">
+      <h3>Wire Giscus &amp; Live Counters</h3>
+      <p>
+        Enter your GitHub repository details from <a href="https://giscus.app/" target="_blank" rel="noopener" style="color: #d6c3a5;">giscus.app</a>. Each theme maps to its own GitHub Discussion thread via <code>data-term</code>, syncing live comments and reaction counts across all visitors.
+      </p>
+      <div class="field-group">
+        <label for="cfgRepo">GitHub Repository (owner/repo)</label>
+        <input id="cfgRepo" type="text" placeholder="niivu/niivu-portfolio" />
+      </div>
+      <div class="field-group">
+        <label for="cfgRepoId">Repository ID (data-repo-id)</label>
+        <input id="cfgRepoId" type="text" placeholder="R_kgDO..." />
+      </div>
+      <div class="field-group">
+        <label for="cfgCategory">Discussion Category Name</label>
+        <input id="cfgCategory" type="text" placeholder="Announcements" />
+      </div>
+      <div class="field-group">
+        <label for="cfgCategoryId">Category ID (data-category-id)</label>
+        <input id="cfgCategoryId" type="text" placeholder="DIC_kwDO..." />
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;">
+        <button type="button" class="btn-secondary" onclick="closeConfigModal(null, true)">Cancel</button>
+        <button type="button" class="btn-primary" onclick="saveGiscusConfig()">Save Configuration</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Default Giscus Config — Replace placeholders with your giscus.app values for permanent GitHub Pages deployment
+    const DEFAULT_GISCUS = {
+      repo: 'niivu/niivu.github.io',
+      repoId: 'R_kgDOVz2Vhw',
+      category: 'General',
+      categoryId: 'DIC_kwDOVz2Vh84DLeB8'
+    };
+
+    // CounterAPI namespace for live global view & download tracking across visitors
+    const COUNTER_NAMESPACE = 'niivu-windows-themes-v1';
+
+    // 2. Theme Catalog
+    const themes = {
+      nothing: {
+        title: 'NOTHING',
+        category: 'Featured Suite / Monochrome',
+        filter: 'dark',
+        file: 'images/Nothing for Windows 11 by niivu.png',
+        downloadUrl: 'https://www.deviantart.com/niivu',
+        baseViews: 14820,
+        baseDownloads: 5410,
+        discussionTerm: 'Theme: NOTHING for Windows 11'
+      },
+      goldengate: {
+        title: 'GOLDEN GATE',
+        category: 'Windows 11 / Warm Glass',
+        filter: 'dark',
+        file: 'images/Golden Gate for Windows 11 by niivu.png',
+        downloadUrl: 'https://www.deviantart.com/niivu',
+        baseViews: 19240,
+        baseDownloads: 7130,
+        discussionTerm: 'Theme: GOLDEN GATE for Windows 11'
+      },
+      void: {
+        title: 'VOID',
+        category: 'Windows 11 / Obsidian Dark',
+        filter: 'dark',
+        file: 'images/VOID for Windows 11 by niivu.png',
+        downloadUrl: 'https://www.deviantart.com/niivu',
+        baseViews: 22610,
+        baseDownloads: 8940,
+        discussionTerm: 'Theme: VOID for Windows 11'
+      },
+      futurodarko: {
+        title: 'FUTURO DARKO',
+        category: 'Windows 11 / Dark',
+        filter: 'dark',
+        file: 'images/FUTURO DARKO for Windows 11 by niivu.png',
+        downloadUrl: 'https://www.deviantart.com/niivu',
+        baseViews: 11490,
+        baseDownloads: 4280,
+        discussionTerm: 'Theme: FUTURO DARKO for Windows 11'
+      },
+      amana26: {
+        title: 'AMANA 26',
+        category: 'Windows 11 / Dark',
+        filter: 'dark',
+        file: 'images/AMANA 26 for Windows 11 by niivu.png',
+        downloadUrl: 'https://www.deviantart.com/niivu',
+        baseViews: 9850,
+        baseDownloads: 3620,
+        discussionTerm: 'Theme: AMANA 26 for Windows 11'
+      },
+      dustandglass: {
+        title: 'Dust and Glass',
+        category: 'Windows 11 / Frosted Glass',
+        filter: 'dark',
+        file: 'images/Dust and Glass for Windows 11 by niivu.png',
+        downloadUrl: 'https://www.deviantart.com/niivu',
+        baseViews: 13370,
+        baseDownloads: 4990,
+        discussionTerm: 'Theme: Dust and Glass for Windows 11'
+      },
+      areao26: {
+        title: 'areao26',
+        category: 'Windows 11 / Aero',
+        filter: 'classic',
+        file: 'images/areao26 for Windows 11 by niivu.png',
+        downloadUrl: 'https://www.deviantart.com/niivu',
+        baseViews: 16120,
+        baseDownloads: 6340,
+        discussionTerm: 'Theme: areao26 for Windows 11'
+      },
+      bluecurve: {
+        title: 'Bluecurve',
+        category: 'Windows 11 / Heritage',
+        filter: 'classic',
+        file: 'images/Bluecurve for Windows 11 by niivu.png',
+        downloadUrl: 'https://www.deviantart.com/niivu',
+        baseViews: 18540,
+        baseDownloads: 7810,
+        discussionTerm: 'Theme: Bluecurve for Windows 11'
+      }
+    };
+
+    const liveCounts = {};
+    let activeThemeId = null;
+
+    function getGiscusConfig() {
+      const saved = JSON.parse(localStorage.getItem('niivu_giscus_cfg') || 'null');
+      return saved || DEFAULT_GISCUS;
+    }
+
+    function updateBannerVisibility() {
+      const cfg = getGiscusConfig();
+      const banner = document.getElementById('setupBanner');
+      if (cfg.repo && cfg.repoId && cfg.categoryId) {
+        banner.classList.add('hidden');
+      } else {
+        banner.classList.remove('hidden');
+      }
+    }
+
+    // Fetch & increment live global counts via CounterAPI v1 with local fallback
+    async function syncCounter(key, baseValue, increment = false) {
+      const endpoint = increment
+        ? `https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${key}/up`
+        : `https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${key}`;
+
+      try {
+        const res = await fetch(endpoint);
+        if (!res.ok) throw new Error('Counter unavailable');
+        const data = await res.json();
+        const remoteCount = Number(data.count) || 0;
+        localStorage.setItem(`niivu_cnt_${key}`, remoteCount);
+        return baseValue + remoteCount;
+      } catch (err) {
+        let localDelta = Number(localStorage.getItem(`niivu_cnt_${key}`) || 0);
+        if (increment) {
+          localDelta += 1;
+          localStorage.setItem(`niivu_cnt_${key}`, localDelta);
+        }
+        return baseValue + localDelta;
+      }
+    }
+
+    async function initAllCounters() {
+      const keys = Object.keys(themes);
+      await Promise.all(keys.map(async (id) => {
+        const item = themes[id];
+        const [views, downloads] = await Promise.all([
+          syncCounter(`${id}-views`, item.baseViews, false),
+          syncCounter(`${id}-downloads`, item.baseDownloads, false)
+        ]);
+        const savedComments = Number(localStorage.getItem(`niivu_giscus_comments_${id}`) || 0);
+        liveCounts[id] = { views, downloads, comments: savedComments };
+      }));
+      renderCounts();
+    }
+
+    function renderCounts() {
+      let totalV = 0;
+      let totalD = 0;
+
+      Object.keys(themes).forEach((id) => {
+        const c = liveCounts[id] || {
+          views: themes[id].baseViews,
+          downloads: themes[id].baseDownloads,
+          comments: 0
+        };
+        totalV += c.views;
+        totalD += c.downloads;
+
+        document.querySelectorAll(`[data-views="${id}"]`).forEach(el => {
+          el.textContent = c.views.toLocaleString();
+        });
+        document.querySelectorAll(`[data-downloads="${id}"]`).forEach(el => {
+          el.textContent = c.downloads.toLocaleString();
+        });
+        document.querySelectorAll(`[data-comments="${id}"]`).forEach(el => {
+          el.textContent = c.comments.toLocaleString();
+        });
+      });
+
+      document.getElementById('totalViews').textContent = totalV.toLocaleString();
+      document.getElementById('totalDownloads').textContent = totalD.toLocaleString();
+
+      if (activeThemeId && liveCounts[activeThemeId]) {
+        document.getElementById('modalViews').textContent = liveCounts[activeThemeId].views.toLocaleString();
+        document.getElementById('modalDownloads').textContent = liveCounts[activeThemeId].downloads.toLocaleString();
+        document.getElementById('modalComments').textContent = liveCounts[activeThemeId].comments.toLocaleString();
+      }
+    }
+
+    async function trackView(id) {
+      const updated = await syncCounter(`${id}-views`, themes[id].baseViews, true);
+      if (!liveCounts[id]) liveCounts[id] = { views: updated, downloads: themes[id].baseDownloads, comments: 0 };
+      liveCounts[id].views = updated;
+      renderCounts();
+    }
+
+    async function trackDownload(id) {
+      const updated = await syncCounter(`${id}-downloads`, themes[id].baseDownloads, true);
+      if (!liveCounts[id]) liveCounts[id] = { views: themes[id].baseViews, downloads: updated, comments: 0 };
+      liveCounts[id].downloads = updated;
+      renderCounts();
+    }
+
+    // Build Archive Cards
+    function buildArchive() {
+      const grid = document.getElementById('archiveGrid');
+      const archiveKeys = Object.keys(themes).filter(k => k !== 'nothing');
+
+      grid.innerHTML = archiveKeys.map(id => {
+        const item = themes[id];
+        return `
+          <article class="archive-card" data-category="${item.filter}" data-theme-id="${id}">
+            <div class="archive-media" onclick="openInspector('${id}')">
+              <img
+                src="${item.file}"
+                alt="${item.title} for Windows 11 by niivu"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="img-fallback">
+                <strong>${item.file}</strong>
+                <span>Place PNG inside images/ folder</span>
+              </div>
+            </div>
+            <div class="archive-body">
+              <div class="archive-top">
+                <div>
+                  <div class="card-meta">${item.category}</div>
+                  <h3 class="archive-title">${item.title}</h3>
+                </div>
+              </div>
+              <div class="archive-bottom">
+                <div class="mini-metrics">
+                  <span>Views: <strong data-views="${id}">—</strong></span>
+                  <span>DL: <strong data-downloads="${id}">—</strong></span>
+                  <span>Comments: <strong data-comments="${id}">0</strong></span>
+                </div>
+                <div class="mini-actions">
+                  <button type="button" class="mini-btn" onclick="openInspector('${id}')">Discuss</button>
+                  <a
+                    href="${item.downloadUrl}"
+                    target="_blank"
+                    rel="noopener"
+                    class="mini-btn dl"
+                    onclick="trackDownload('${id}')"
+                  >Download &nearr;</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Mount Giscus widget for the active theme discussion
+    function mountGiscus(themeId) {
+      const container = document.getElementById('giscusContainer');
+      const cfg = getGiscusConfig();
+      const item = themes[themeId];
+
+      container.innerHTML = '';
+
+      if (!cfg.repo || !cfg.repoId || !cfg.categoryId) {
+        container.innerHTML = `
+          <div style="padding: 18px; border: 1px dashed #333; border-radius: 12px; font-size: 0.85rem; color: #aaa; line-height: 1.6;">
+            <strong style="color: #f5f5f5; display: block; margin-bottom: 6px;">Connect GitHub Discussions via Giscus</strong>
+            1. Enable <strong>Discussions</strong> in your GitHub repository settings.<br/>
+            2. Visit <a href="https://giscus.app/" target="_blank" rel="noopener" style="color: #d6c3a5;">giscus.app</a> to copy your <code>repo-id</code> and <code>category-id</code>.<br/>
+            3. Click <strong>Giscus Setup</strong> in the top bar (or paste your IDs into <code>DEFAULT_GISCUS</code> inside <code>index.html</code>).<br/><br/>
+            <button type="button" class="setup-btn" onclick="openConfigModal()">Enter Giscus IDs Now</button>
+          </div>
+        `;
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.setAttribute('data-repo', cfg.repo);
+      script.setAttribute('data-repo-id', cfg.repoId);
+      script.setAttribute('data-category', cfg.category || 'General');
+      script.setAttribute('data-category-id', cfg.categoryId);
+      script.setAttribute('data-mapping', 'specific');
+      script.setAttribute('data-term', item.discussionTerm);
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '1');
+      script.setAttribute('data-input-position', 'top');
+      script.setAttribute('data-theme', 'noborder_dark');
+      script.setAttribute('data-lang', 'en');
+      script.crossOrigin = 'anonymous';
+      script.async = true;
+
+      container.appendChild(script);
+    }
+
+    // Listen to Giscus postMessage events for real-time comment & reaction counts
+    window.addEventListener('message', (event) => {
+      if (event.origin !== 'https://giscus.app') return;
+      if (!(typeof event.data === 'object' && event.data.giscus)) return;
+
+      const giscusData = event.data.giscus;
+      if (giscusData.discussion && activeThemeId) {
+        const d = giscusData.discussion;
+        const totalComments = (Number(d.totalCommentCount) || 0) + (Number(d.totalReplyCount) || 0);
+        localStorage.setItem(`niivu_giscus_comments_${activeThemeId}`, totalComments);
+
+        if (liveCounts[activeThemeId]) {
+          liveCounts[activeThemeId].comments = totalComments;
+          renderCounts();
+        }
+      }
+    });
+
+    function openInspector(id) {
+      activeThemeId = id;
+      const item = themes[id];
+
+      document.getElementById('modalImg').src = item.file;
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalCategory').textContent = item.category;
+
+      const dlLink = document.getElementById('modalDownloadLink');
+      dlLink.href = item.downloadUrl;
+      dlLink.onclick = () => trackDownload(id);
+
+      trackView(id);
+      renderCounts();
+      mountGiscus(id);
+
+      document.getElementById('inspectorModal').classList.add('open');
+    }
+
+    function closeInspector(event, force = false) {
+      if (force || event.target.id === 'inspectorModal') {
+        document.getElementById('inspectorModal').classList.remove('open');
+        activeThemeId = null;
+      }
+    }
+
+    function openConfigModal() {
+      const cfg = getGiscusConfig();
+      document.getElementById('cfgRepo').value = cfg.repo || '';
+      document.getElementById('cfgRepoId').value = cfg.repoId || '';
+      document.getElementById('cfgCategory').value = cfg.category || 'General';
+      document.getElementById('cfgCategoryId').value = cfg.categoryId || '';
+      document.getElementById('configModal').classList.add('open');
+    }
+
+    function closeConfigModal(event, force = false) {
+      if (force || event.target.id === 'configModal') {
+        document.getElementById('configModal').classList.remove('open');
+      }
+    }
+
+    function saveGiscusConfig() {
+      const cfg = {
+        repo: document.getElementById('cfgRepo').value.trim(),
+        repoId: document.getElementById('cfgRepoId').value.trim(),
+        category: document.getElementById('cfgCategory').value.trim() || 'General',
+        categoryId: document.getElementById('cfgCategoryId').value.trim()
+      };
+      localStorage.setItem('niivu_giscus_cfg', JSON.stringify(cfg));
+      updateBannerVisibility();
+      closeConfigModal(null, true);
+      if (activeThemeId) {
+        mountGiscus(activeThemeId);
+      }
+    }
+
+    function filterArchive(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.archive-card').forEach(card => {
+        card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeInspector(null, true);
+        closeConfigModal(null, true);
+      }
+    });
+
+    // Initialize
+    buildArchive();
+    updateBannerVisibility();
+    initAllCounters();
+  </script>
+</body>
+</html>
