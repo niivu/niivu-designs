@@ -325,12 +325,15 @@
       background: var(--text-primary);
       color: var(--bg);
       border: none;
-      padding: 11px 22px;
+      padding: 10px 20px;
       border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       transition: opacity 0.2s ease;
     }
 
@@ -341,18 +344,20 @@
     .btn-secondary {
       background: transparent;
       color: var(--text-primary);
-      border: 1px solid var(--border);
-      padding: 10px 20px;
+      border: 1px solid var(--border-hover);
+      padding: 10px 18px;
       border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 500;
       cursor: pointer;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
     }
 
     .btn-secondary:hover {
-      border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.03);
+      background: #1b1b1b;
     }
 
     /* Archive Grid — Uncropped Images */
@@ -360,14 +365,14 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
       gap: 32px;
-      align-items: start;
       margin-bottom: 100px;
+      align-items: start;
     }
 
     .archive-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 22px;
+      border-radius: 20px;
       overflow: hidden;
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
@@ -382,7 +387,9 @@
       background: #050505;
       cursor: pointer;
       border-bottom: 1px solid var(--border);
-      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .archive-media img {
@@ -396,10 +403,10 @@
       padding: 24px 28px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .archive-header {
+    .archive-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -412,7 +419,7 @@
       letter-spacing: -0.02em;
     }
 
-    .archive-footer {
+    .archive-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -422,13 +429,36 @@
       border-top: 1px solid var(--border);
     }
 
-    .missing-img-fallback {
-      padding: 48px 24px;
+    .archive-metrics {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 12px;
+    }
+
+    .archive-metrics strong {
+      color: var(--text-primary);
+    }
+
+    .archive-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 0.8rem;
+    }
+
+    /* Missing Image Fallback */
+    .img-fallback {
+      display: none;
+      padding: 64px 24px;
       text-align: center;
       color: var(--text-secondary);
       font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      width: 100%;
+      font-size: 0.82rem;
     }
 
     /* Footer */
@@ -464,7 +494,7 @@
       color: var(--text-primary);
     }
 
-    /* Inspector Modal with Giscus Comments */
+    /* Lightbox + Giscus Comments Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -475,125 +505,140 @@
       align-items: center;
       z-index: 1000;
       padding: 24px;
+      overflow-y: auto;
     }
 
     .modal-backdrop.open {
       display: flex;
     }
 
-    .modal-shell {
+    .inspector-modal {
       background: var(--surface);
       border: 1px solid var(--border-hover);
       border-radius: 24px;
       width: 100%;
-      max-width: 1360px;
+      max-width: 1280px;
       max-height: 92vh;
       display: grid;
-      grid-template-columns: 1.45fr 1fr;
+      grid-template-columns: 1.5fr 1fr;
       overflow: hidden;
       box-shadow: 0 32px 96px rgba(0, 0, 0, 0.85);
     }
 
-    .modal-preview {
+    .inspector-visual {
       background: #050505;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: auto;
       padding: 24px;
+      overflow: auto;
       border-right: 1px solid var(--border);
     }
 
-    .modal-preview img {
+    .inspector-visual img {
       max-width: 100%;
-      max-height: 84vh;
-      width: auto;
-      height: auto;
+      max-height: 82vh;
       object-fit: contain;
-      border-radius: 10px;
+      border-radius: 8px;
     }
 
-    .modal-sidebar {
+    .inspector-sidebar {
       display: flex;
       flex-direction: column;
       max-height: 92vh;
-      overflow-y: auto;
-      padding: 28px;
-      gap: 20px;
+      overflow: hidden;
     }
 
-    .modal-top {
+    .inspector-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 16px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
+      gap: 12px;
     }
 
-    .modal-title {
-      font-size: 1.65rem;
+    .inspector-title {
+      font-size: 1.5rem;
       font-weight: 600;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
 
     .close-btn {
       background: var(--surface-elevated);
       border: 1px solid var(--border);
       color: var(--text-primary);
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 999px;
       cursor: pointer;
       font-size: 0.8rem;
-      font-family: 'Space Mono', monospace;
     }
 
-    .close-btn:hover {
-      border-color: var(--border-hover);
-    }
-
-    .modal-actions {
+    .inspector-details {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .inspector-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .inspector-actions {
+      display: flex;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
     }
 
-    .giscus-section-label {
+    /* Giscus Comments Container */
+    .comments-section {
+      padding: 20px 28px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .comments-heading {
       font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-secondary);
-      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     #giscusContainer {
       min-height: 220px;
     }
 
-    @media (max-width: 1024px) {
-      .modal-shell {
+    @media (max-width: 960px) {
+      .inspector-modal {
         grid-template-columns: 1fr;
         max-height: 94vh;
         overflow-y: auto;
       }
-      .modal-preview {
+      .inspector-visual {
         border-right: none;
         border-bottom: 1px solid var(--border);
       }
-      .modal-sidebar {
+      .inspector-sidebar {
         max-height: none;
-        overflow-y: visible;
       }
     }
 
     @media (max-width: 768px) {
       body { padding: 0 20px; }
-      .hero { padding: 56px 0; }
+      .hero { padding: 60px 0; }
       .archive-grid { grid-template-columns: 1fr; }
       .card-body { padding: 24px; }
     }
@@ -607,7 +652,7 @@
       <span class="wordmark">NIIVU</span>
     </a>
     <nav>
-      <a href="#work">Latest</a>
+      <a href="#featured">Latest</a>
       <a href="#archive">Archive</a>
       <a href="https://github.com/niivu" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.deviantart.com/niivu" target="_blank" rel="noopener">DeviantArt</a>
@@ -622,55 +667,53 @@
       </div>
       <h1>Windows Themes, Icons &amp; Interface Design.</h1>
       <div class="hero-footer">
-        <p>Minimal, industrial, and glass-inspired visual styles engineered for Windows 11. Inspect full-resolution desktop suites, download releases, and join the discussion on every build.</p>
+        <p>Minimal, industrial, and glass-inspired visual styles engineered for the Windows 11 desktop. Inspect full previews, download releases, and join the discussion below.</p>
         <div class="global-stats">
           <div class="stat-block">
-            <span class="stat-value" id="totalViews">—</span>
+            <span class="stat-value" id="totalViews">0</span>
             <span class="stat-label">Total Views</span>
           </div>
           <div class="stat-block">
-            <span class="stat-value" id="totalDownloads">—</span>
-            <span class="stat-label">Downloads</span>
-          </div>
-          <div class="stat-block">
             <span class="stat-value">8</span>
-            <span class="stat-label">Suites</span>
+            <span class="stat-label">Themes</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Single Featured Latest Release -->
-    <section id="work">
+    <!-- Single Latest Featured Release -->
+    <section id="featured">
       <div class="section-header">
         <div>
           <div class="section-subtitle">Latest Release / Featured Suite</div>
           <h2 class="section-title">NOTHING for Windows 11</h2>
         </div>
       </div>
-      <div id="featuredContainer"></div>
+
+      <article class="featured-card" id="featuredCard"></article>
     </section>
 
     <!-- Archive Grid -->
     <section id="archive">
       <div class="section-header">
         <div>
-          <div class="section-subtitle">Complete Collection</div>
+          <div class="section-subtitle">Catalog</div>
           <h2 class="section-title">Theme Archive</h2>
         </div>
         <div class="filter-tabs" role="tablist">
           <button class="filter-btn active" onclick="filterArchive('all', this)">All (7)</button>
           <button class="filter-btn" onclick="filterArchive('dark', this)">Dark &amp; Glass</button>
-          <button class="filter-btn" onclick="filterArchive('classic', this)">Classic &amp; Aero</button>
+          <button class="filter-btn" onclick="filterArchive('classic', this)">Classic &amp; Heritage</button>
         </div>
       </div>
+
       <div class="archive-grid" id="archiveGrid"></div>
     </section>
   </main>
 
   <footer>
     <div class="footer-brand">
-      <img src="images/avatar.png" alt="NIIVU" class="avatar" style="width: 28px; height: 28px; border-radius: 7px;" onerror="this.style.display='none'" />
+      <img src="images/avatar.png" alt="NIIVU" class="avatar" style="width:28px;height:28px;border-radius:7px;" onerror="this.style.display='none'" />
       <span>&copy; 2026 NIIVU &mdash; Customize it your way.</span>
     </div>
     <div class="footer-links">
@@ -679,32 +722,36 @@
     </div>
   </footer>
 
-  <!-- Lightbox & Giscus Discussion Modal -->
-  <div class="modal-backdrop" id="inspectorModal" onclick="closeModal(event)">
-    <div class="modal-shell">
-      <div class="modal-preview" id="modalPreview"></div>
-      <div class="modal-sidebar">
-        <div class="modal-top">
+  <!-- Fullscreen Inspector & Giscus Comments Modal -->
+  <div class="modal-backdrop" id="inspectorModal" onclick="closeInspector(event)">
+    <div class="inspector-modal" onclick="event.stopPropagation()">
+      <div class="inspector-visual">
+        <img id="modalImg" src="" alt="Theme Preview" />
+      </div>
+      <div class="inspector-sidebar">
+        <div class="inspector-header">
           <div>
             <div class="card-meta" id="modalMeta"></div>
-            <h3 class="modal-title" id="modalTitle"></h3>
+            <h3 class="inspector-title" id="modalTitle"></h3>
           </div>
-          <button class="close-btn" onclick="closeModal(event, true)">ESC</button>
+          <button class="close-btn" onclick="closeInspector(null, true)">Close [ESC]</button>
         </div>
-
-        <p class="card-desc" id="modalDesc"></p>
-
-        <div class="modal-actions">
-          <div class="metrics-pill">
-            <span>Views <strong id="modalViews">0</strong></span>
-            <span>Downloads <strong id="modalDownloads">0</strong></span>
-            <span>Comments <strong id="modalComments">0</strong></span>
+        <div class="inspector-details">
+          <p class="inspector-desc" id="modalDesc"></p>
+          <div class="inspector-actions">
+            <div class="archive-metrics">
+              <span><strong id="modalViews">0</strong> views</span>
+              <span>&bull;</span>
+              <span><strong id="modalCommentCount">0</strong> comments</span>
+            </div>
+            <a id="modalDownloadBtn" href="#" target="_blank" rel="noopener" class="btn-primary btn-sm">Download Theme &darr;</a>
           </div>
-          <a id="modalDownloadBtn" href="#" target="_blank" rel="noopener" class="btn-primary">Download Theme &nearr;</a>
         </div>
-
-        <div>
-          <div class="giscus-section-label">Community Discussion (GitHub)</div>
+        <div class="comments-section">
+          <div class="comments-heading">
+            <span>GitHub Discussion</span>
+            <span>Powered by Giscus</span>
+          </div>
           <div id="giscusContainer"></div>
         </div>
       </div>
@@ -712,6 +759,7 @@
   </div>
 
   <script>
+    // Pre-configured Giscus settings for niivu/niivu-designs
     const GISCUS_CONFIG = {
       repo: 'niivu/niivu-designs',
       repoId: 'R_kgDOVz2Vhw',
@@ -719,245 +767,302 @@
       categoryId: 'DIC_kwDOVz2Vh84DLeB7'
     };
 
-    const COUNTER_NAMESPACE = 'niivu-designs-portfolio';
+    const COUNTER_NAMESPACE = 'niivu-portfolio-v2';
 
+    // Theme catalog mapped to abbreviated filenames inside images/
     const themes = [
       {
         id: 'nothing',
         title: 'NOTHING',
-        subtitle: 'Monochrome Industrial Matrix',
-        category: 'featured',
+        discussionTerm: 'Theme: NOTHING for Windows 11',
+        tag: 'Featured Suite / Monochrome Industrial Matrix',
+        category: 'dark',
         featured: true,
         image: 'images/Nothing.png',
-        description: 'Stark monochrome contrast, dot-matrix typography accents, and stripped-back industrial window chrome engineered for Windows 11.',
-        downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1420,
-        baseDownloads: 640
+        desc: 'Stark monochrome contrast, dot-matrix typography accents, custom system icons, and stripped-back industrial window chrome engineered for Windows 11.',
+        views: 0,
+        commentsCount: 0,
+        downloadUrl: 'https://www.deviantart.com/niivu'
       },
       {
         id: 'golden-gate',
         title: 'GOLDEN GATE',
-        subtitle: 'Warm Beige & Frosted Glass',
+        discussionTerm: 'Theme: GOLDEN GATE for Windows 11',
+        tag: 'Windows 11 / Warm Beige & Frosted Glass',
         category: 'dark',
         featured: false,
         image: 'images/Golden-Gate.png',
-        description: 'Warm architectural tones paired with translucent window framing and refined system iconography for Windows 11.',
-        downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 2180,
-        baseDownloads: 910
+        desc: 'Warm architectural tones paired with translucent window framing and refined system iconography for Windows 11.',
+        views: 0,
+        commentsCount: 0,
+        downloadUrl: 'https://www.deviantart.com/niivu'
       },
       {
         id: 'void',
         title: 'VOID',
-        subtitle: 'Obsidian & Crimson Geometry',
+        discussionTerm: 'Theme: VOID for Windows 11',
+        tag: 'Windows 11 / Obsidian & Crimson',
         category: 'dark',
         featured: false,
         image: 'images/VOID.png',
-        description: 'Deep obsidian surfaces punctuated by sharp crimson status indicators and zero-distraction titlebars.',
-        downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1890,
-        baseDownloads: 820
+        desc: 'Deep obsidian surfaces punctuated by sharp crimson status indicators and zero-distraction titlebars.',
+        views: 0,
+        commentsCount: 0,
+        downloadUrl: 'https://www.deviantart.com/niivu'
       },
       {
         id: 'futuro-darko',
         title: 'FUTURO DARKO',
-        subtitle: 'Dark Futuristic UI Suite',
+        discussionTerm: 'Theme: FUTURO DARKO for Windows 11',
+        tag: 'Windows 11 / Dark',
         category: 'dark',
         featured: false,
         image: 'images/FUTURO-DARKO.png',
-        description: 'High-contrast nocturnal workspace with sculpted dark controls and crisp typography.',
-        downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1640,
-        baseDownloads: 730
+        desc: 'High-contrast dark interface with sculpted titlebar controls and clean explorer layouts.',
+        views: 0,
+        commentsCount: 0,
+        downloadUrl: 'https://www.deviantart.com/niivu'
       },
       {
         id: 'amana-26',
         title: 'AMANA 26',
-        subtitle: 'Minimal Dark Visual Style',
+        discussionTerm: 'Theme: AMANA 26 for Windows 11',
+        tag: 'Windows 11 / Dark',
         category: 'dark',
         featured: false,
         image: 'images/AMANA.png',
-        description: 'Balanced dark gray surfaces, subtle borders, and clean explorer chrome for everyday clarity.',
-        downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1510,
-        baseDownloads: 690
+        desc: 'Minimalist dark visual style balancing subtle border hierarchy with crisp typography.',
+        views: 0,
+        commentsCount: 0,
+        downloadUrl: 'https://www.deviantart.com/niivu'
       },
       {
         id: 'dust-and-glass',
         title: 'Dust and Glass',
-        subtitle: 'Translucent Muted Glass',
+        discussionTerm: 'Theme: Dust and Glass for Windows 11',
+        tag: 'Windows 11 / Glass',
         category: 'dark',
         featured: false,
         image: 'images/Dust-and-Glass.png',
-        description: 'Soft atmospheric layering with frosted glass transparency and muted neutral accents.',
-        downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1320,
-        baseDownloads: 540
+        desc: 'Textured translucency and frosted glass layers crafted for modern Windows 11 shells.',
+        views: 0,
+        commentsCount: 0,
+        downloadUrl: 'https://www.deviantart.com/niivu'
       },
       {
         id: 'areao26',
         title: 'areao26',
-        subtitle: 'Modern Aero Glass Revival',
+        discussionTerm: 'Theme: areao26 for Windows 11',
+        tag: 'Windows 11 / Classic & Aero',
         category: 'classic',
         featured: false,
         image: 'images/areao26.png',
-        description: 'Reflective glass borders and nostalgic luminosity reimagined for modern Windows 11 builds.',
-        downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1750,
-        baseDownloads: 780
+        desc: 'Modern reinterpretation of classic Aero transparency and glossy window framing.',
+        views: 0,
+        commentsCount: 0,
+        downloadUrl: 'https://www.deviantart.com/niivu'
       },
       {
         id: 'bluecurve',
         title: 'Bluecurve',
-        subtitle: 'Classic Workstation Heritage',
+        discussionTerm: 'Theme: Bluecurve for Windows 11',
+        tag: 'Windows 11 / Heritage',
         category: 'classic',
         featured: false,
         image: 'images/Bluecurve.png',
-        description: 'A faithful tribute to iconic early-2000s desktop ergonomics adapted cleanly to Windows 11.',
-        downloadUrl: 'https://www.deviantart.com/niivu',
-        baseViews: 1480,
-        baseDownloads: 615
+        desc: 'Tribute to the iconic Bluecurve desktop aesthetic adapted for Windows 11.',
+        views: 0,
+        commentsCount: 0,
+        downloadUrl: 'https://www.deviantart.com/niivu'
       }
     ];
 
-    const state = {
-      views: {},
-      downloads: {},
-      comments: {},
-      activeThemeId: null,
-      activeFilter: 'all'
-    };
+    let currentFilter = 'all';
+    let activeThemeId = null;
 
-    function getLocalCount(key, fallback) {
-      const val = parseInt(localStorage.getItem(key), 10);
-      return Number.isFinite(val) ? val : fallback;
+    function getLocalCounters() {
+      try {
+        return JSON.parse(localStorage.getItem('niivu_stats_v2') || '{}');
+      } catch {
+        return {};
+      }
     }
 
-    function setLocalCount(key, val) {
-      localStorage.setItem(key, String(val));
+    function saveLocalCounters(data) {
+      try {
+        localStorage.setItem('niivu_stats_v2', JSON.stringify(data));
+      } catch {}
     }
 
-    async function fetchCounter(metric, themeId, baseValue, increment = false) {
-      const storageKey = `niivu_${metric}_${themeId}`;
-      const localCurrent = getLocalCount(storageKey, baseValue);
+    function getCachedCommentCounts() {
+      try {
+        return JSON.parse(localStorage.getItem('niivu_giscus_counts_v2') || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function saveCachedCommentCount(themeId, count) {
+      try {
+        const cached = getCachedCommentCounts();
+        cached[themeId] = count;
+        localStorage.setItem('niivu_giscus_counts_v2', JSON.stringify(cached));
+      } catch {}
+    }
+
+    async function syncRemoteCounter(key, increment = false) {
       const endpoint = increment
-        ? `https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${themeId}-${metric}/up`
-        : `https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${themeId}-${metric}`;
-
+        ? `https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${key}/up`
+        : `https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${key}`;
       try {
         const res = await fetch(endpoint);
-        if (!res.ok) throw new Error('Counter API unavailable');
-        const data = await res.json();
-        const total = baseValue + (data.count || 0);
-        setLocalCount(storageKey, total);
-        return total;
-      } catch (err) {
-        const next = increment ? localCurrent + 1 : localCurrent;
-        setLocalCount(storageKey, next);
-        return next;
+        if (!res.ok) return null;
+        const json = await res.json();
+        return typeof json.count === 'number' ? json.count : null;
+      } catch {
+        return null;
       }
     }
 
-    function updateGlobalTotals() {
-      const totalV = Object.values(state.views).reduce((a, b) => a + b, 0);
-      const totalD = Object.values(state.downloads).reduce((a, b) => a + b, 0);
-      document.getElementById('totalViews').textContent = totalV.toLocaleString();
-      document.getElementById('totalDownloads').textContent = totalD.toLocaleString();
-    }
+    async function hydrateStats() {
+      const local = getLocalCounters();
+      const cachedComments = getCachedCommentCounts();
 
-    function renderPortfolio() {
+      themes.forEach(t => {
+        if (local[t.id]) {
+          t.views = local[t.id].views || 0;
+        }
+        if (typeof cachedComments[t.id] === 'number') {
+          t.commentsCount = cachedComments[t.id];
+        }
+      });
+
+      renderAll();
+
+      // Increment featured release view on page visit
       const featured = themes.find(t => t.featured);
-      const featuredContainer = document.getElementById('featuredContainer');
-
       if (featured) {
-        const v = state.views[featured.id] ?? featured.baseViews;
-        const d = state.downloads[featured.id] ?? featured.baseDownloads;
-        const c = state.comments[featured.id] ?? 0;
+        incrementMetric(featured.id, 'views', false);
+      }
 
+      // Sync view totals from CounterAPI
+      await Promise.all(themes.map(async t => {
+        const remoteViews = await syncRemoteCounter(`${t.id}-views`, false);
+        if (remoteViews !== null) {
+          t.views = remoteViews;
+          local[t.id] = { views: t.views };
+        }
+      }));
+
+      saveLocalCounters(local);
+      renderAll();
+    }
+
+    async function incrementMetric(themeId, type, rerender = true) {
+      const theme = themes.find(t => t.id === themeId);
+      if (!theme) return;
+
+      const local = getLocalCounters();
+      if (!local[themeId]) local[themeId] = { views: theme.views };
+
+      theme.views += 1;
+      local[themeId].views = theme.views;
+      saveLocalCounters(local);
+
+      if (rerender) {
+        renderAll();
+        if (activeThemeId === themeId) {
+          document.getElementById('modalViews').textContent = theme.views.toLocaleString();
+        }
+      }
+
+      const remoteCount = await syncRemoteCounter(`${themeId}-views`, true);
+      if (remoteCount !== null) {
+        theme.views = remoteCount;
+        local[themeId].views = remoteCount;
+        saveLocalCounters(local);
+        renderAll();
+        if (activeThemeId === themeId) {
+          document.getElementById('modalViews').textContent = theme.views.toLocaleString();
+        }
+      }
+    }
+
+    function renderAll() {
+      const totalViews = themes.reduce((sum, t) => sum + t.views, 0);
+      document.getElementById('totalViews').textContent = totalViews.toLocaleString();
+
+      // Render Featured Release (NOTHING)
+      const featured = themes.find(t => t.featured);
+      const featuredContainer = document.getElementById('featuredCard');
+      if (featured) {
         featuredContainer.innerHTML = `
-          <article class="featured-card">
-            <div class="featured-media" onclick="openModal('${featured.id}')">
-              <img src="${featured.image}" alt="${featured.title} for Windows 11 by niivu"
-                   onerror="this.outerHTML='<div class=\'missing-img-fallback\'>Preview image not found at <strong>${featured.image}</strong></div>'" />
+          <div class="featured-media" onclick="openInspector('${featured.id}')">
+            <img src="${featured.image}" alt="${featured.title} for Windows 11 by niivu"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <div class="img-fallback">Preview image not found at <code>${featured.image}</code></div>
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-meta">${featured.tag}</div>
+              <h3 class="card-title">${featured.title}</h3>
+              <p class="card-desc">${featured.desc}</p>
             </div>
-            <div class="card-body">
-              <div>
-                <div class="card-meta">${featured.subtitle}</div>
-                <h3 class="card-title">${featured.title}</h3>
-                <p class="card-desc">${featured.description}</p>
+            <div class="card-actions">
+              <div class="metrics-pill">
+                <span><strong>${featured.views.toLocaleString()}</strong> views</span>
+                <span>&bull;</span>
+                <span><strong>${featured.commentsCount}</strong> comments</span>
               </div>
-              <div class="card-actions">
-                <div class="metrics-pill">
-                  <span>Views <strong id="views-${featured.id}">${v.toLocaleString()}</strong></span>
-                  <span>Downloads <strong id="downloads-${featured.id}">${d.toLocaleString()}</strong></span>
-                  <span>Comments <strong id="comments-${featured.id}">${c}</strong></span>
-                </div>
-                <button class="btn-secondary" onclick="openModal('${featured.id}')">Inspect &amp; Discuss</button>
-                <a href="${featured.downloadUrl}" target="_blank" rel="noopener" class="btn-primary" onclick="trackDownload('${featured.id}')">Download &nearr;</a>
-              </div>
+              <button class="btn-secondary" onclick="openInspector('${featured.id}')">Discuss &amp; Inspect</button>
+              <a href="${featured.downloadUrl}" target="_blank" rel="noopener" class="btn-primary">Download &darr;</a>
             </div>
-          </article>
+          </div>
         `;
       }
 
+      // Render Archive Cards
       const archiveGrid = document.getElementById('archiveGrid');
-      const archiveThemes = themes.filter(t => !t.featured && (state.activeFilter === 'all' || t.category === state.activeFilter));
+      const archiveThemes = themes.filter(t => !t.featured && (currentFilter === 'all' || t.category === currentFilter));
 
-      archiveGrid.innerHTML = archiveThemes.map(theme => {
-        const v = state.views[theme.id] ?? theme.baseViews;
-        const d = state.downloads[theme.id] ?? theme.baseDownloads;
-        const c = state.comments[theme.id] ?? 0;
-
-        return `
-          <article class="archive-card">
-            <div class="archive-media" onclick="openModal('${theme.id}')">
-              <img src="${theme.image}" alt="${theme.title} for Windows 11 by niivu" loading="lazy"
-                   onerror="this.outerHTML='<div class=\'missing-img-fallback\'>Missing: <strong>${theme.image}</strong></div>'" />
-            </div>
-            <div class="archive-body">
-              <div class="archive-header">
-                <div>
-                  <div class="card-meta">${theme.subtitle}</div>
-                  <h3 class="archive-title">${theme.title}</h3>
-                </div>
-                <button class="btn-secondary" style="padding: 7px 14px; font-size: 0.8rem;" onclick="openModal('${theme.id}')">Inspect</button>
-              </div>
-              <p class="card-desc" style="font-size: 0.88rem;">${theme.description}</p>
-              <div class="archive-footer">
-                <div class="metrics-pill" style="padding: 7px 12px; font-size: 0.72rem; gap: 10px;">
-                  <span>V <strong id="views-${theme.id}">${v.toLocaleString()}</strong></span>
-                  <span>D <strong id="downloads-${theme.id}">${d.toLocaleString()}</strong></span>
-                  <span>C <strong id="comments-${theme.id}">${c}</strong></span>
-                </div>
-                <a href="${theme.downloadUrl}" target="_blank" rel="noopener" class="btn-primary" style="padding: 8px 16px; font-size: 0.8rem;" onclick="trackDownload('${theme.id}')">Download &nearr;</a>
+      archiveGrid.innerHTML = archiveThemes.map(t => `
+        <article class="archive-card">
+          <div class="archive-media" onclick="openInspector('${t.id}')">
+            <img src="${t.image}" alt="${t.title} for Windows 11 by niivu" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <div class="img-fallback">Preview image not found at <code>${t.image}</code></div>
+          </div>
+          <div class="archive-body">
+            <div class="archive-top">
+              <div>
+                <div class="card-meta">${t.tag}</div>
+                <h3 class="archive-title">${t.title}</h3>
               </div>
             </div>
-          </article>
-        `;
-      }).join('');
+            <div class="archive-bottom">
+              <div class="archive-metrics">
+                <span><strong>${t.views.toLocaleString()}</strong> views</span>
+                <span>&bull;</span>
+                <span><strong>${t.commentsCount}</strong> comments</span>
+              </div>
+              <div class="archive-actions">
+                <button class="btn-secondary btn-sm" onclick="openInspector('${t.id}')">Inspect (${t.commentsCount})</button>
+                <a href="${t.downloadUrl}" target="_blank" rel="noopener" class="btn-primary btn-sm">Download</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
     }
 
     function filterArchive(category, btn) {
-      state.activeFilter = category;
+      currentFilter = category;
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderPortfolio();
+      renderAll();
     }
 
-    async function trackDownload(themeId) {
-      const theme = themes.find(t => t.id === themeId);
-      if (!theme) return;
-      const updated = await fetchCounter('downloads', themeId, theme.baseDownloads, true);
-      state.downloads[themeId] = updated;
-      const cardEl = document.getElementById(`downloads-${themeId}`);
-      if (cardEl) cardEl.textContent = updated.toLocaleString();
-      if (state.activeThemeId === themeId) {
-        document.getElementById('modalDownloads').textContent = updated.toLocaleString();
-      }
-      updateGlobalTotals();
-    }
-
-    function loadGiscusThread(theme) {
+    function mountGiscus(theme) {
       const container = document.getElementById('giscusContainer');
       container.innerHTML = '';
 
@@ -968,12 +1073,12 @@
       script.setAttribute('data-category', GISCUS_CONFIG.category);
       script.setAttribute('data-category-id', GISCUS_CONFIG.categoryId);
       script.setAttribute('data-mapping', 'specific');
-      script.setAttribute('data-term', `Theme: ${theme.title} for Windows 11`);
+      script.setAttribute('data-term', theme.discussionTerm);
       script.setAttribute('data-strict', '0');
       script.setAttribute('data-reactions-enabled', '1');
       script.setAttribute('data-emit-metadata', '1');
       script.setAttribute('data-input-position', 'top');
-      script.setAttribute('data-theme', 'dark_dimmed');
+      script.setAttribute('data-theme', 'dark_high_contrast');
       script.setAttribute('data-lang', 'en');
       script.setAttribute('crossorigin', 'anonymous');
       script.async = true;
@@ -981,87 +1086,60 @@
       container.appendChild(script);
     }
 
+    // Listen for live Giscus discussion metadata to sync comment counts
     window.addEventListener('message', (event) => {
       if (event.origin !== 'https://giscus.app') return;
       if (!(typeof event.data === 'object' && event.data.giscus)) return;
 
       const giscusData = event.data.giscus;
-      if (giscusData.discussion && state.activeThemeId) {
-        const count = (giscusData.discussion.totalCommentCount || 0) + (giscusData.discussion.totalReplyCount || 0);
-        state.comments[state.activeThemeId] = count;
-        localStorage.setItem(`niivu_comments_${state.activeThemeId}`, String(count));
-
-        const cardEl = document.getElementById(`comments-${state.activeThemeId}`);
-        if (cardEl) cardEl.textContent = count;
-        document.getElementById('modalComments').textContent = count;
+      if (giscusData.discussion && activeThemeId) {
+        const total = (giscusData.discussion.totalCommentCount || 0) + (giscusData.discussion.totalReplyCount || 0);
+        const theme = themes.find(t => t.id === activeThemeId);
+        if (theme) {
+          theme.commentsCount = total;
+          saveCachedCommentCount(theme.id, total);
+          document.getElementById('modalCommentCount').textContent = total;
+          renderAll();
+        }
       }
     });
 
-    async function openModal(themeId) {
+    function openInspector(themeId) {
       const theme = themes.find(t => t.id === themeId);
       if (!theme) return;
 
-      state.activeThemeId = themeId;
+      activeThemeId = themeId;
+      incrementMetric(themeId, 'views');
 
-      document.getElementById('modalPreview').innerHTML = `
-        <img src="${theme.image}" alt="${theme.title} for Windows 11 by niivu"
-             onerror="this.outerHTML='<div class=\'missing-img-fallback\'>Preview image not found at <strong>${theme.image}</strong></div>'" />
-      `;
-      document.getElementById('modalMeta').textContent = theme.subtitle;
+      document.getElementById('modalImg').src = theme.image;
+      document.getElementById('modalMeta').textContent = theme.tag;
       document.getElementById('modalTitle').textContent = theme.title;
-      document.getElementById('modalDesc').textContent = theme.description;
+      document.getElementById('modalDesc').textContent = theme.desc;
+      document.getElementById('modalViews').textContent = theme.views.toLocaleString();
+      document.getElementById('modalCommentCount').textContent = theme.commentsCount;
 
       const dlBtn = document.getElementById('modalDownloadBtn');
       dlBtn.href = theme.downloadUrl;
-      dlBtn.onclick = () => trackDownload(theme.id);
 
-      const updatedViews = await fetchCounter('views', themeId, theme.baseViews, true);
-      state.views[themeId] = updatedViews;
-
-      const cardViewEl = document.getElementById(`views-${themeId}`);
-      if (cardViewEl) cardViewEl.textContent = updatedViews.toLocaleString();
-
-      document.getElementById('modalViews').textContent = updatedViews.toLocaleString();
-      document.getElementById('modalDownloads').textContent = (state.downloads[themeId] ?? theme.baseDownloads).toLocaleString();
-      document.getElementById('modalComments').textContent = state.comments[themeId] ?? 0;
-
-      updateGlobalTotals();
-      loadGiscusThread(theme);
-
+      mountGiscus(theme);
       document.getElementById('inspectorModal').classList.add('open');
     }
 
-    function closeModal(event, force = false) {
-      if (force || event.target.id === 'inspectorModal') {
+    function closeInspector(event, force = false) {
+      if (force || (event && event.target.id === 'inspectorModal')) {
         document.getElementById('inspectorModal').classList.remove('open');
-        state.activeThemeId = null;
+        activeThemeId = null;
       }
     }
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal(null, true);
+      if (e.key === 'Escape') {
+        closeInspector(null, true);
+      }
     });
 
-    async function init() {
-      themes.forEach(t => {
-        state.views[t.id] = getLocalCount(`niivu_views_${t.id}`, t.baseViews);
-        state.downloads[t.id] = getLocalCount(`niivu_downloads_${t.id}`, t.baseDownloads);
-        state.comments[t.id] = getLocalCount(`niivu_comments_${t.id}`, 0);
-      });
-
-      renderPortfolio();
-      updateGlobalTotals();
-
-      await Promise.all(themes.map(async (t) => {
-        state.views[t.id] = await fetchCounter('views', t.id, t.baseViews, false);
-        state.downloads[t.id] = await fetchCounter('downloads', t.id, t.baseDownloads, false);
-      }));
-
-      renderPortfolio();
-      updateGlobalTotals();
-    }
-
-    init();
+    // Initialize portfolio
+    hydrateStats();
   </script>
 </body>
 </html>
